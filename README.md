@@ -1,36 +1,34 @@
-# Simple API + Frontend App
+# Backend
 
-## Overview
-This project demonstrates how a frontend application communicates with a backend API using HTTP requests and JSON responses.
+This folder contains a small Flask API.
 
-The goal was to understand how real-world web and cloud-based applications connect user interfaces to backend services.
+Quick start (PowerShell):
 
-## Technologies Used
-- Python (Flask)
-- HTML, CSS, JavaScript
-- REST API
-- JSON
-- Fetch API
+1. Run the helper script to create a venv, install requirements, and start the server:
 
-## Features
-- User input form
-- Backend API endpoint
-- Frontend-to-backend communication
-- Real-time result display
+```powershell
+cd "$(Split-Path -Path $MyInvocation.MyCommand.Definition -Parent)"
+.\start-backend.ps1
+```
 
-## How It Works
-1. The user enters two numbers and selects an operation.
-2. The frontend sends the data to the Flask API using a POST request.
-3. The backend processes the request and returns a JSON response.
-4. The frontend displays the result dynamically.
+Manual commands (PowerShell):
 
-## Why This Project Matters
-This project helped me understand:
-- How APIs connect frontends and backends
-- How data flows in cloud-based systems
-- Core concepts expected of junior developers
+```powershell
+cd "C:\Users\Yolanda S'phesihle M\Documents\simple API frontend\Backend"
+python -m venv venv
+.\venv\Scripts\python.exe -m pip install --upgrade pip setuptools wheel
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+.\venv\Scripts\python.exe app.py
+```
 
-## Future Improvements
-- Deploy backend to a cloud platform
-- Add authentication
-- Convert frontend to React
+Test the `/calculate` endpoint (PowerShell):
+
+```powershell
+Invoke-RestMethod -Method POST -Uri http://127.0.0.1:5000/calculate -ContentType 'application/json' -Body '{"num1":4,"num2":2,"operation":"multiply"}'
+```
+
+Or with `curl`:
+
+```powershell
+curl -X POST http://127.0.0.1:5000/calculate -H "Content-Type: application/json" -d '{"num1":4,"num2":2,"operation":"multiply"}'
+```
